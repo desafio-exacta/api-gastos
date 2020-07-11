@@ -33,7 +33,11 @@ public class Pessoa {
 	
 	@OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonBackReference(value = "pessoa-gasto")
-	private List<Gasto> gasto;	
+	private List<Gasto> gasto;
+	
+	public Pessoa(String nome) {
+		this.nome = nome;
+	}
 
 	public long getId() {
 		return id;

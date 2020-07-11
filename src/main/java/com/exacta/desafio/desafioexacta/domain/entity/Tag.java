@@ -34,6 +34,10 @@ public class Tag {
 	@OneToMany(mappedBy = "tag", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonBackReference(value = "tag-gasto")
 	private List<Gasto> gasto;	
+	
+	public Tag(String nome) {
+		this.nome = nome;
+	}
 
 	public long getId() {
 		return id;

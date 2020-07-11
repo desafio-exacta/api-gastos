@@ -81,4 +81,20 @@ public class Gasto {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+
+	public Tag getTag() {
+		return tag;
+	}
+
+	public void setTag(Tag tag) {
+		this.tag = tag;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
 }

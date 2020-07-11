@@ -5,9 +5,9 @@ import javax.websocket.server.PathParam;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import com.exacta.desafio.desafioexacta.domain.entity.Gasto;
+import com.exacta.desafio.desafioexacta.domain.entity.Tag;
 
 @RestResource(exported = false)
-public interface GastoRepository extends JpaRepository<Gasto, Long> {
-	Gasto findById(@PathParam("id") long id);
+public interface TagRepository extends JpaRepository<Tag, Long> {
+	Tag findByNome(@PathParam("nome") String nome);
 }
