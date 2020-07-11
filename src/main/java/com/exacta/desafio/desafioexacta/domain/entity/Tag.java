@@ -17,9 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "Pessoa")
+@Table(name = "Tag")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Pessoa {
+public class Tag {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,8 +31,8 @@ public class Pessoa {
 	@JsonProperty(value = "nome")
 	private String nome;
 	
-	@OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonBackReference(value = "pessoa-gasto")
+	@OneToMany(mappedBy = "tag", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonBackReference(value = "tag-gasto")
 	private List<Gasto> gasto;	
 
 	public long getId() {
