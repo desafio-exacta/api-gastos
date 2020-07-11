@@ -21,22 +21,20 @@ public class GastoService {
 	@Autowired
 	private TagRepository tagRepository;
 	
-	public Gasto add(Gasto gasto) {		
-		Pessoa p = pessoaRepository.findByNome(gasto.getPessoa().getNome());
-		Tag t = tagRepository.findByNome(gasto.getTag().getNome());
-		if(p == null) p = addPessoa(gasto.getPessoa().getNome());
-		if(t == null) t = addTag(gasto.getTag().getNome());
+	public Gasto add(Gasto gasto) {
+		String pessoa = gasto.getPessoa().getNome();
+		String tag = gasto.getTag().getNome();
+		
+		Pessoa p = pessoaRepository.findByNome(pessoa);
+		Tag t = tagRepository.findByNome(tag.toUpperCase());
+		
+		if(p == null) p = addPessoa(pessoa);
+		if(t == null) t = addTag(tag);
+		
 		gasto.setPessoa(p);
 		gasto.setTag(t);
+		
 		return gastoRepository.save(gasto);
-	}
-	
-	public Pessoa addPessoa(String nome) {
-		return pessoaRepository.save(new Pessoa(nome));
-	}
-	
-	public Tag addTag(String nome) {
-		return tagRepository.save(new Tag(nome.toUpperCase()));
 	}
 	
 	public Gasto findById(long id) {
@@ -45,5 +43,13 @@ public class GastoService {
 	
 	public Iterable<Gasto> findAll(){
 		return gastoRepository.findAll();
+	}
+	
+	private Pessoa addPessoa(String nome) {
+		return pessoaRepository.save(new Pessoa(nome));
+	}
+	
+	private Tag addTag(String nome) {
+		return tagRepository.save(new Tag(nome.toUpperCase()));
 	}
 }
