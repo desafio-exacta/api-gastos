@@ -34,7 +34,7 @@ public class Tag {
 	@JsonProperty(value = "nome")
 	private String nome;
 	
-	@OneToMany(mappedBy = "tag", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tag", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonBackReference(value = "tag-gasto")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@JsonIgnore

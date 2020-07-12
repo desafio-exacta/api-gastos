@@ -42,8 +42,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	UiConfiguration uiConfig() {
 		return UiConfigurationBuilder
 				.builder()
+				.deepLinking(true)
+		        .displayOperationId(true)
 		        .defaultModelsExpandDepth(-1)
+		        .defaultModelExpandDepth(0)
+		        .defaultModelRendering(ModelRendering.EXAMPLE)
+		        .displayRequestDuration(false)
 		        .docExpansion(DocExpansion.LIST)
+		        .filter(false)
+		        .maxDisplayedTags(null)
+		        .operationsSorter(OperationsSorter.ALPHA)
+		        .showExtensions(false)
+		        .showCommonExtensions(false)
+		        .tagsSorter(TagsSorter.ALPHA)
+		        .supportedSubmitMethods(UiConfiguration.Constants.DEFAULT_SUBMIT_METHODS)
+		        .validatorUrl(null)
 		        .build();
 	}
 }

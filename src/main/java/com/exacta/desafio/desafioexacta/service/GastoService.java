@@ -23,21 +23,21 @@ public class GastoService {
 	@Autowired
 	private TagRepository tagRepository;
 	
-	public Gasto add(Gasto gasto) {
-		String pessoa = gasto.getPessoa().getNome();
-		String tag = gasto.getTag().getNome();
-		
-		Pessoa p = pessoaRepository.findByNome(pessoa);
-		Tag t = tagRepository.findByNome(tag.toUpperCase());
-		
-		if(p == null) p = addPessoa(pessoa);
-		if(t == null) t = addTag(tag);
-		
-		gasto.setPessoa(p);
-		gasto.setTag(t);
-		gasto.setData(Calendar.getInstance());
-		
-		return gastoRepository.save(gasto);
+	public Gasto add(Gasto gasto) {		
+		return gastoRepository.save(manterRelacionamento(gasto));
+	}
+	
+	public Gasto update(long id, Gasto gasto) {		
+		if(gastoRepository.existsById(id)) {
+			gasto = manterRelacionamento(gasto);
+			gasto.setId(id);
+			return gastoRepository.save(gasto);
+		}
+		return null;
+	}
+	
+	public void delete(long id) {
+		gastoRepository.deleteById(id);
 	}
 	
 	public Gasto findById(long id) {
@@ -54,5 +54,22 @@ public class GastoService {
 	
 	private Tag addTag(String nome) {
 		return tagRepository.save(new Tag(nome.toUpperCase()));
+	}
+	
+	private Gasto manterRelacionamento(Gasto gasto) {
+		String pessoa = gasto.getPessoa().getNome();
+		String tag = gasto.getTag().getNome();
+		
+		Pessoa p = pessoaRepository.findByNome(pessoa);
+		Tag t = tagRepository.findByNome(tag.toUpperCase());
+		
+		if(p == null) p = addPessoa(pessoa);
+		if(t == null) t = addTag(tag);
+		
+		gasto.setPessoa(p);
+		gasto.setTag(t);
+		gasto.setData(Calendar.getInstance());
+		
+		return gasto;
 	}
 }

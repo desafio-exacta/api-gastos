@@ -34,7 +34,7 @@ public class Pessoa {
 	@JsonProperty(value = "nome")
 	private String nome;
 	
-	@OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonBackReference(value = "pessoa-gasto")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@JsonIgnore
