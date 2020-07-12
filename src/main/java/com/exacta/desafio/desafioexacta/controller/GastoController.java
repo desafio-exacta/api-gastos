@@ -11,24 +11,29 @@ import org.springframework.web.bind.annotation.RestController;
 import com.exacta.desafio.desafioexacta.domain.entity.Gasto;
 import com.exacta.desafio.desafioexacta.service.GastoService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
-@RequestMapping(path = "/api/v1/gasto")
+@RequestMapping("/")
 public class GastoController {
 
 	@Autowired
 	private GastoService service;
 	
-	@PostMapping(consumes = "application/json", produces = "application/json")
+	@ApiOperation(value = "Incluir gasto")
+	@PostMapping(path = "api/gastos", consumes = "application/json", produces = "application/json")
 	public Gasto add(@RequestBody Gasto gasto) {
 		return service.add(gasto);
 	}
 	
-	@GetMapping(path = "/", produces = "application/json")
+	@ApiOperation(value = "Listar todos os gastos")
+	@GetMapping(path = "api/gastos", produces = "application/json")
 	public Iterable<Gasto> findAll() {
 		return service.findAll();
 	}
 	
-	@GetMapping(path = "/{id}", produces = "application/json")
+	@ApiOperation(value = "Listar gasto por id")
+	@GetMapping(path = "api/gastos/{id}", produces = "application/json")
 	public Gasto findById(@PathVariable("id") long id) {
 		return service.findById(id);
 	}

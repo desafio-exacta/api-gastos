@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name = "Gasto")
@@ -23,7 +24,8 @@ public class Gasto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	@JsonProperty(value = "id")
+	@JsonProperty(value = "id", access = Access.WRITE_ONLY)
+	@JsonIgnore
 	private long id;
 	
 	@Column(name = "descricao")
@@ -53,11 +55,7 @@ public class Gasto {
 	public long getId() {
 		return id;
 	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	
 	public String getDescricao() {
 		return descricao;
 	}
