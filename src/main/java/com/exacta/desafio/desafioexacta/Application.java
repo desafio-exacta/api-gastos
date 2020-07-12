@@ -15,10 +15,10 @@ import com.exacta.desafio.desafioexacta.domain.entity.Pessoa;
 import com.exacta.desafio.desafioexacta.domain.entity.Tag;
 
 @SpringBootApplication
-public class DesafioExactaApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DesafioExactaApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 	
 	@Bean
