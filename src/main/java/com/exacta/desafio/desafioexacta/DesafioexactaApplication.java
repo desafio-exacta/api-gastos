@@ -1,5 +1,7 @@
 package com.exacta.desafio.desafioexacta;
 
+import java.util.Calendar;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -40,14 +42,14 @@ public class DesafioExactaApplication {
 			Gasto g1 = new Gasto();
 			Gasto g2 = new Gasto();
 			
-			g1.setData("2020/07/11");
+			g1.setData(Calendar.getInstance());
 			g1.setDescricao("Lanche");
 			g1.setValor(10.20);
 			g1.setPessoa(p1);
 			g1.setTag(t1);			
 			gastoRepository.save(g1);
 			
-			g2.setData("2020/07/11");
+			g2.setData(Calendar.getInstance());
 			g2.setDescricao("Ônibus");
 			g2.setValor(4.70);
 			g2.setPessoa(p1);

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.exacta.desafio.desafioexacta.domain.entity.Gasto;
 import com.exacta.desafio.desafioexacta.service.GastoService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@Api(tags = "Gasto")
 @RestController
 @RequestMapping("/")
 public class GastoController {

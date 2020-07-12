@@ -1,5 +1,7 @@
 package com.exacta.desafio.desafioexacta.service;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,7 @@ public class GastoService {
 		
 		gasto.setPessoa(p);
 		gasto.setTag(t);
+		gasto.setData(Calendar.getInstance());
 		
 		return gastoRepository.save(gasto);
 	}

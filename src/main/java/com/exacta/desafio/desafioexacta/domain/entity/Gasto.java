@@ -1,5 +1,7 @@
 package com.exacta.desafio.desafioexacta.domain.entity;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,7 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -32,24 +37,26 @@ public class Gasto {
 	@JsonProperty(value = "descricao")
 	private String descricao;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data")
-	@JsonProperty(value = "data")
-	private String data;
+	@JsonProperty(value = "data")	
+	@JsonIgnore
+	private Calendar data;
 	
 	@Column(name = "valor")
 	@JsonProperty(value = "valor")
 	private double valor;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "tag_id")
-	@JsonIgnore
+	@JoinColumn(name = "tag_id")	
 	@JsonManagedReference(value = "tag-gasto")
+	@JsonIgnore
 	private Tag tag;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pessoa_id")
-	@JsonIgnore
 	@JsonManagedReference(value = "pessoa-gasto")
+	@JsonIgnore
 	private Pessoa pessoa;
 
 	public long getId() {
@@ -64,11 +71,13 @@ public class Gasto {
 		this.descricao = descricao;
 	}
 
-	public String getData() {
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "pt-BR", timezone = "Brazil/East")
+	public Calendar getData() {
 		return data;
 	}
-
-	public void setData(String data) {
+	
+	@JsonIgnore
+	public void setData(Calendar data) {
 		this.data = data;
 	}
 
